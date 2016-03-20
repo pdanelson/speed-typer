@@ -7,7 +7,7 @@ const PATHS = {
 };
 
 module.exports = {
-  entry: path.join(PATHS.app, 'src', 'main.js'),
+  entry: path.join(PATHS.app, 'src', 'main.jsx'),
   output: {
     path: PATHS.dist,
     filename: 'bundle.js'
@@ -16,14 +16,14 @@ module.exports = {
     preLoaders: [
       {
         loader: 'eslint-loader',
-        test: /\.js$/,
+        test: /\.jsx$/,
         include: PATHS.app
       }
     ],
     loaders: [
       {
         loader: 'babel-loader',
-        test: /\.js$/,
+        test: /\.jsx$/,
         include: PATHS.app
       }
     ]
@@ -31,6 +31,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Speed Typer',
+      template: path.join(PATHS.app, 'index.tpl.html'),
       filename: 'index.html'
     })
   ],
