@@ -1,3 +1,5 @@
 define(['react', 'react-dom', './SpeedTyper.jsx'], (React, ReactDOM, SpeedTyper) => {
-  ReactDOM.render(<SpeedTyper />, document.getElementById('container'));
+  const words = ['disturb', 'development', 'inexplosive', 'fashionably', 'laniferous', 'baseless',
+  'tetartohedral', 'comprehensive', 'deflected', 'infectiousness', 'impenetrable', 'gyroscopic'];
+  ReactDOM.render(<SpeedTyper words={words} />, document.getElementById('container'));
 });

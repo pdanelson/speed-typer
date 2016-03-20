@@ -1,35 +1,55 @@
 define(['react', './Statistics.jsx', './Target.jsx', './Input.jsx'],
   (React, Statistics, Target, Input) => {
     class SpeedTyper extends React.Component {
-      constructor(props) {
-        super(props);
-        this.pickRandomWord = this.pickRandomWord.bind(this);
-        this.validateWord = this.validateWord.bind(this);
-        this.state = {
-          activeWord: this.pickRandomWord(),
-          score: 0
-        };
-      }
+      static propTypes = {
+        words: React.PropTypes.arrayOf(React.PropTypes.string)
+      };
 
-      pickRandomWord() {
-        const words = ['disturb', 'developmental', 'inexplosive', 'fashionably', 'laniferous'];
-        return words[Math.floor(Math.random() * words.length)];
-      }
-
-      validateWord(word) {
-        console.log(word);
-        if (word === this.state.activeWord) {
-          this.setState({
-            score: this.state.score += 1,
-            activeWord: this.pickRandomWord()
-          });
+      state = {
+        activeWord: this.props.words[Math.floor(Math.random() * this.props.words.length)],
+        startTime: (new Date()).getTime(),
+        statistics: {
+          correctCount: 0,
+          mistakeCount: 0,
+          wpm: 0,
+          accuracy: 0
         }
-      }
+      };
+
+      validateWord = (word) => {
+        if (word.length !== this.state.activeWord.length) {
+          return false;
+        }
+        const newStats = this.calculateStatistics(word, this.state.statistics);
+        this.setState({
+          statistics: newStats,
+          activeWord: this.pickRandomWord()
+        });
+        return true;
+      };
+
+      calculateStatistics = (word, oldStats) => {
+        const newStats = {};
+        if (word === this.state.activeWord) {
+          newStats.correctCount = oldStats.correctCount + 1;
+          newStats.mistakeCount = oldStats.mistakeCount;
+        } else {
+          newStats.mistakeCount = oldStats.mistakeCount + 1;
+          newStats.correctCount = oldStats.correctCount;
+        }
+        const total = newStats.correctCount + newStats.mistakeCount;
+        newStats.accuracy = Math.round(newStats.correctCount / total * 10000) / 100;
+        const elapsedMinutes = ((new Date()).getTime() - this.state.startTime) / 1000 / 60;
+        newStats.wpm = Math.round(total / elapsedMinutes * 100) / 100;
+        return newStats;
+      };
+
+      pickRandomWord = () => this.props.words[Math.floor(Math.random() * this.props.words.length)];
 
       render() {
         return (
           <div>
-            <Statistics score={this.state.score} />
+            <Statistics statistics={this.state.statistics} />
             <Target word={this.state.activeWord} />
             <Input wordValidationFn={this.validateWord} />
           </div>

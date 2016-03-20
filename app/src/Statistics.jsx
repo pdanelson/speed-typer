@@ -1,14 +1,17 @@
 define(['react'], (React) => {
-  function Statistics({ score }) {
+  function Statistics({ statistics: { correctCount, mistakeCount, wpm, accuracy } }) {
     return (
       <div>
-        Your score is: {score}
+        <p>Correctly typed words: {correctCount}</p>
+        <p>Mistyped words: {mistakeCount}</p>
+        <p>Words per minute: {wpm}</p>
+        <p>Typing accuracy: {accuracy}%</p>
       </div>
     );
   }
 
   Statistics.propTypes = {
-    score: React.PropTypes.number.isRequired
+    statistics: React.PropTypes.objectOf(React.PropTypes.number.isRequired).isRequired
   };
 
   return Statistics;
