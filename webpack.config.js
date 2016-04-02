@@ -7,7 +7,7 @@ const PATHS = {
 };
 
 module.exports = {
-  entry: path.join(PATHS.app, 'src', 'main.jsx'),
+  entry: path.join(PATHS.app, 'main.jsx'),
   output: {
     path: PATHS.dist,
     filename: 'bundle.js'

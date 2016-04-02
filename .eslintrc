@@ -9,9 +9,6 @@
       "jsx": true
     }
   },
-  "globals": {
-    "define": true
-  },
   "rules": {
     "comma-dangle": 0
   }
