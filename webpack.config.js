@@ -7,7 +7,7 @@ const PATHS = {
 };
 
 module.exports = {
-  entry: path.join(PATHS.app, 'main.jsx'),
+  entry: path.join(PATHS.app, 'main.js'),
   output: {
     path: PATHS.dist,
     filename: 'bundle.js'
@@ -16,14 +16,14 @@ module.exports = {
     preLoaders: [
       {
         loader: 'eslint-loader',
-        test: /\.jsx$/,
+        test: /\.js$/,
         include: PATHS.app
       }
     ],
     loaders: [
       {
         loader: 'babel-loader',
-        test: /\.jsx$/,
+        test: /\.js$/,
         include: PATHS.app
       }
     ]
