@@ -1,16 +1,18 @@
+/* global describe:false, it:false, expect:false */
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-addons-test-utils';
 import InactiveWord from '../../app/components/words/InactiveWord';
 
 describe('InactiveWord', () => {
-  const buildInactiveWord = word => {
-    const renderer = TestUtils.createRenderer();
+  const shallowRender = word => {
+    const renderer = createRenderer();
     renderer.render(<InactiveWord word={word} />);
     return renderer.getRenderOutput();
   };
 
-  it('should display word', () => {
-    const inactiveWord = buildInactiveWord('word');
-    expect(inactiveWord.props.children[0]).to.eq('word');
+  it('should display word and space', () => {
+    const inactiveWord = shallowRender('word');
+    expect(inactiveWord.props.children[0]).to.eql('word');
+    expect(inactiveWord.props.children[1]).to.eql(' ');
   });
 });

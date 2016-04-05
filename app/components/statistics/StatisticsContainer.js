@@ -10,7 +10,7 @@ export default class StatisticsContainer extends Component {
   };
 
   state = {
-    startTime: (new Date()).getTime()
+    startTime: Date.now()
   };
 
   calculateAccuracy = () => {
@@ -19,7 +19,7 @@ export default class StatisticsContainer extends Component {
   };
 
   calculateWordsPerMinute = () => {
-    const elapsedMinutes = ((new Date()).getTime() - this.state.startTime) / 1000 / 60;
+    const elapsedMinutes = (Date.now() - this.state.startTime) / 1000 / 60;
     return Math.round(this.props.evaluatedWords.length / elapsedMinutes * 100) / 100 || 0;
   };
 

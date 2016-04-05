@@ -11,9 +11,9 @@ export default class WordsContainer extends Component {
   };
 
   static defaultProps = {
-    words: ['disturb', 'development', 'inexplosive', 'fashionably', 'laniferous', 'baseless',
-      'tetartohedral', 'comprehensive', 'deflected', 'infectiousness', 'impenetrable',
-      'gyroscopic', 'monstrosity', 'hexagon', 'differential']
+    words: ['disturb', 'hexagon', 'development', 'inexplosive', 'fashionably', 'laniferous',
+      'baseless', 'tetartohedral', 'comprehensive', 'deflected', 'infectiousness', 'impenetrable',
+      'gyroscopic', 'monstrosity', 'differential']
   };
 
   state = {

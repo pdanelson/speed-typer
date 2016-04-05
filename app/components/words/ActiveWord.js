@@ -3,9 +3,7 @@ import ActiveWordLetter from './ActiveWordLetter';
 
 export default function ActiveWord({ letters }) {
   return (
-    <span>
-      {letters.map((letter, i) => <ActiveWordLetter letter={letter} key={i} />)}&nbsp;
-    </span>
+    <span>{letters.map((letter, i) => <ActiveWordLetter letter={letter} key={i} />)} </span>
   );
 }
 

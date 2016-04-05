@@ -1,15 +1,14 @@
 import React, { PropTypes } from 'react';
 
-export default function Statistics({ name, value }) {
+export default function Statistic({ name, value }) {
   return (
     <div>
-      <span className="statName">{name}: </span>
-      <span className="statValue">{value}</span>
+      {name}: {value}
     </div>
   );
 }
 
-Statistics.propTypes = {
+Statistic.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired
 };

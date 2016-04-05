@@ -11,15 +11,15 @@ export default class WordInput extends Component {
   };
 
   handleChange = (event) => {
-    this.setState({ input: event.target.value });
     this.props.onChange(event.target.value);
+    this.setState({ input: event.target.value });
   };
 
   handleKeyDown = (event) => {
     if (event.key === ' ') {
       event.preventDefault();
-      this.setState({ input: '' });
       this.props.onSubmit();
+      this.setState({ input: '' });
     }
   };
 

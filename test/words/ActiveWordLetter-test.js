@@ -1,37 +1,39 @@
+/* global describe:false, context:false, it:false, expect:false */
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-addons-test-utils';
 import ActiveWordLetter from '../../app/components/words/ActiveWordLetter';
 
 describe('ActiveWordLetter', () => {
-  const buildActiveWordLetter = letter => {
-    const renderer = TestUtils.createRenderer();
+  const shallowRender = letter => {
+    const renderer = createRenderer();
     renderer.render(<ActiveWordLetter letter={letter} />);
     return renderer.getRenderOutput();
   };
 
-  describe('with unvalidated letter', () => {
+  context('with unvalidated letter', () => {
     it('should display letter without background color', () => {
-      const activeWordLetter = buildActiveWordLetter({ letter: 'a' });
-      expect(activeWordLetter.props.children).to.eq('a');
-      expect(activeWordLetter.props.style.fontWeight).to.eq('bold');
+      const activeWordLetter = shallowRender({ letter: 'a' });
+      expect(activeWordLetter.props.children).to.eql('a');
+      expect(activeWordLetter.props.style).to.have.property('fontWeight').which.eql('bold');
+      expect(activeWordLetter.props.style).to.not.have.property('backgroundColor');
     });
   });
 
-  describe('with valid letter', () => {
+  context('with valid letter', () => {
     it('should display letter with "#ADFF2F" background color', () => {
-      const activeWordLetter = buildActiveWordLetter({ letter: 'a', correct: true });
-      expect(activeWordLetter.props.children).to.eq('a');
-      expect(activeWordLetter.props.style.fontWeight).to.eq('bold');
-      expect(activeWordLetter.props.style.backgroundColor).to.eq('#ADFF2F');
+      const activeWordLetter = shallowRender({ letter: 'a', correct: true });
+      expect(activeWordLetter.props.children).to.eql('a');
+      expect(activeWordLetter.props.style).to.have.property('fontWeight').which.eql('bold');
+      expect(activeWordLetter.props.style).to.have.property('backgroundColor').which.eql('#ADFF2F');
     });
   });
 
-  describe('with invalid letter', () => {
+  context('with invalid letter', () => {
     it('should display letter with "#FF4500"" background color', () => {
-      const activeWordLetter = buildActiveWordLetter({ letter: 'a', correct: false });
-      expect(activeWordLetter.props.children).to.eq('a');
-      expect(activeWordLetter.props.style.fontWeight).to.eq('bold');
-      expect(activeWordLetter.props.style.backgroundColor).to.eq('#FF4500');
+      const activeWordLetter = shallowRender({ letter: 'a', correct: false });
+      expect(activeWordLetter.props.children).to.eql('a');
+      expect(activeWordLetter.props.style).to.have.property('fontWeight').which.eql('bold');
+      expect(activeWordLetter.props.style).to.have.property('backgroundColor').which.eql('#FF4500');
     });
   });
 });

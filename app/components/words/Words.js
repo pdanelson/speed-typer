@@ -4,10 +4,10 @@ import InactiveWord from './InactiveWord';
 
 export default function Words({ activeWord, inactiveWords }) {
   return (
-    <div>
+    <span>
       <ActiveWord letters={activeWord} />
       {inactiveWords.map((inactiveWord, i) => <InactiveWord word={inactiveWord} key={i} />)}
-    </div>
+    </span>
   );
 }
 

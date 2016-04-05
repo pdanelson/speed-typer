@@ -20,8 +20,8 @@
     "eslint-config-airbnb": "~6.1.0",
     "eslint-loader": "~1.3.0",
     "eslint-plugin-react": "~4.2.1",
-    "jsdom": "~8.2.0",
     "html-webpack-plugin": "~2.10.0",
+    "jsdom": "~8.2.0",
     "mocha": "~2.4.5",
     "react-addons-test-utils": "~0.14.8",
     "sinon": "~1.17.3",
@@ -33,6 +33,7 @@
     "start": "webpack-dev-server -d",
     "lint": "eslint --ext .jsx app/**/*.jsx",
     "test": "npm run lint && mocha",
+    "test-debug": "mocha --debug-brk",
     "build-dist": "npm test && webpack -p"
   },
   "author": "Priit Danelson",
