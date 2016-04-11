@@ -1,7 +1,7 @@
 /* global describe:false, context:false, it:false, expect:false */
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
-import PreviousWord from '../../app/components/words/PreviousWord';
+import PreviousWord from '../../app/components/PreviousWord';
 
 describe('PreviousWord', () => {
   const shallowRender = word => {

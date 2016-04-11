@@ -1,7 +1,7 @@
 /* global describe:false, it:false, expect:false */
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Words from '../../app/components/words/Words';
+import Words from '../../app/components/Words';
 
 describe('Words', () => {
   const shallowRender = (activeWord, inactiveWords) => {
@@ -10,7 +10,7 @@ describe('Words', () => {
     return renderer.getRenderOutput();
   };
 
-  it('should render ActiveWord component and InactiveWord components', () => {
+  it('should render ActiveWord component and InactiveWord components2', () => {
     const words = shallowRender([
       { letter: 'A', correct: true },
       { letter: 'B', correct: false }

@@ -1,7 +1,7 @@
 /* global describe:false, it:false, expect:false */
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
-import Statistic from '../../app/components/statistics/Statistic';
+import Statistic from '../../app/components/Statistic';
 
 describe('Statistic', () => {
   const shallowRender = (name, value) => {

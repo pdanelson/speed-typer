@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Statistic from './Statistic';
+import Statistic from './../components/Statistic';
 
 export default class StatisticsContainer extends Component {
   static propTypes = {

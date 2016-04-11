@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import StatisticsContainer from '../statistics/StatisticsContainer';
-import WordsContainer from '../words/WordsContainer';
+import StatisticsContainer from './StatisticsContainer';
+import WordsContainer from './WordsContainer';
 
 export default class SpeedTyper extends Component {
   state = {

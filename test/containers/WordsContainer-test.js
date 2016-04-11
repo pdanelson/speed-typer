@@ -1,7 +1,7 @@
 /* global describe:false, context:false, it:false, before:false, after:false, expect:false, sinon:false */
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import WordsContainer from '../../app/components/words/WordsContainer';
+import WordsContainer from '../../app/containers/WordsContainer';
 import Lodash from 'lodash';
 
 describe('WordsContainer', () => {
@@ -44,7 +44,7 @@ describe('WordsContainer', () => {
   it('should render WordInput component', () => {
     const wordsContainer = shallowRender(() => {});
     const wordInput = wordsContainer.props.children[2];
-    expect(wordInput.type.name).to.eq('WordInput');
+    expect(wordInput.type.name).to.eq('Typing');
     expect(wordInput.props.onChange).to.be.a('function');
     expect(wordInput.props.onSubmit).to.be.a('function');
   });

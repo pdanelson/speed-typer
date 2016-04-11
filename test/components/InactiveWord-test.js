@@ -1,7 +1,7 @@
 /* global describe:false, it:false, expect:false */
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
-import InactiveWord from '../../app/components/words/InactiveWord';
+import InactiveWord from '../../app/components/InactiveWord';
 
 describe('InactiveWord', () => {
   const shallowRender = word => {

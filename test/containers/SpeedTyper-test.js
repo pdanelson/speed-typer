@@ -1,7 +1,7 @@
 /* global describe:false, it:false, expect:false */
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import SpeedTyper from '../../app/components/speed-typer/SpeedTyper';
+import SpeedTyper from '../../app/containers/SpeedTyper';
 
 describe('SpeedTyper', () => {
   const shallowRender = () => {

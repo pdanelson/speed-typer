@@ -1,7 +1,7 @@
 /* global describe:false, it:false, expect:false */
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import ActiveWord from '../../app/components/words/ActiveWord';
+import ActiveWord from '../../app/components/ActiveWord';
 
 describe('ActiveWord', () => {
   const shallowRender = letters => {
@@ -10,7 +10,7 @@ describe('ActiveWord', () => {
     return renderer.getRenderOutput();
   };
 
-  it('should render ActiveLetter components and a space', () => {
+  it('should render ActiveLetter components2 and a space', () => {
     const activeWord = shallowRender([
       { letter: 'A', correct: true },
       { letter: 'B', correct: false },

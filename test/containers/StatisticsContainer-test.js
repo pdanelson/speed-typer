@@ -1,7 +1,7 @@
 /* global describe:false, it:false, expect:false, sinon:false */
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import StatisticsContainer from '../../app/components/statistics/StatisticsContainer';
+import StatisticsContainer from '../../app/containers/StatisticsContainer';
 
 describe('StatisticsContainer', () => {
   const shallowRender = evaluatedWords => {

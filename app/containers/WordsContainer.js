@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import PreviousWord from './PreviousWord';
-import Words from './Words';
-import WordInput from './WordInput';
+import PreviousWord from './../components/PreviousWord';
+import Words from './../components/Words';
+import Typing from './../components/Typing';
 import { every, sample, sampleSize, first, tail } from 'lodash';
 
 export default class WordsContainer extends Component {
@@ -50,7 +50,7 @@ export default class WordsContainer extends Component {
       <div>
         <PreviousWord word={this.state.previousWord} />
         <Words activeWord={this.state.activeWord} inactiveWords={this.state.inactiveWords} />
-        <WordInput onChange={this.handleChange} onSubmit={this.handleSubmit} />
+        <Typing onChange={this.handleChange} onSubmit={this.handleSubmit} />
       </div>
     );
   }

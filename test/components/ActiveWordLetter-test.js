@@ -1,7 +1,7 @@
 /* global describe:false, context:false, it:false, expect:false */
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
-import ActiveWordLetter from '../../app/components/words/ActiveWordLetter';
+import ActiveWordLetter from '../../app/components/ActiveWordLetter';
 
 describe('ActiveWordLetter', () => {
   const shallowRender = letter => {
@@ -15,6 +15,7 @@ describe('ActiveWordLetter', () => {
       const activeWordLetter = shallowRender({ letter: 'a' });
       expect(activeWordLetter.props.children).to.eql('a');
       expect(activeWordLetter.props.style).to.have.property('fontWeight').which.eql('bold');
+      expect(activeWordLetter.props.style).to.have.property('textDecoration').which.eql('underline');
       expect(activeWordLetter.props.style).to.not.have.property('backgroundColor');
     });
   });
@@ -24,6 +25,7 @@ describe('ActiveWordLetter', () => {
       const activeWordLetter = shallowRender({ letter: 'a', correct: true });
       expect(activeWordLetter.props.children).to.eql('a');
       expect(activeWordLetter.props.style).to.have.property('fontWeight').which.eql('bold');
+      expect(activeWordLetter.props.style).to.have.property('textDecoration').which.eql('underline');
       expect(activeWordLetter.props.style).to.have.property('backgroundColor').which.eql('#ADFF2F');
     });
   });
@@ -33,6 +35,7 @@ describe('ActiveWordLetter', () => {
       const activeWordLetter = shallowRender({ letter: 'a', correct: false });
       expect(activeWordLetter.props.children).to.eql('a');
       expect(activeWordLetter.props.style).to.have.property('fontWeight').which.eql('bold');
+      expect(activeWordLetter.props.style).to.have.property('textDecoration').which.eql('underline');
       expect(activeWordLetter.props.style).to.have.property('backgroundColor').which.eql('#FF4500');
     });
   });
