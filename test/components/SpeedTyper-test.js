@@ -1,7 +1,7 @@
 /* global describe:false, it:false, expect:false */
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import SpeedTyper from '../../app/containers/SpeedTyper';
+import SpeedTyper from '../../app/components/SpeedTyper';
 
 describe('SpeedTyper', () => {
   const shallowRender = () => {
@@ -15,20 +15,18 @@ describe('SpeedTyper', () => {
   it('should render StatisticsContainer', () => {
     const speedTyper = shallowRender();
     const statsContainer = speedTyper.props.children[0];
-    expect(statsContainer.type.name).to.eql('StatisticsContainer');
-    expect(statsContainer.props.evaluatedWords).to.eql([]);
+    expect(statsContainer.type.displayName).to.eql('Connect(Statistics)');
   });
 
   it('should render WordsContainer', () => {
     const speedTyper = shallowRender();
     const wordsContainer = speedTyper.props.children[1];
-    expect(wordsContainer.type.name).to.eql('WordsContainer');
-    expect(wordsContainer.props.onInputEvaluated).to.be.a('function');
+    expect(wordsContainer.type.displayName).to.eql('Connect(Words)');
   });
 
-  it('should update state when a word is evaluated', () => {
-    const speedTyper = deepRender();
-    speedTyper.updateEvaluatedWords({ word: 'word', correct: true });
-    expect(speedTyper.state.evaluatedWords).to.eql([{ word: 'word', correct: true }]);
+  it('should render TypingContainer', () => {
+    const speedTyper = shallowRender();
+    const wordsContainer = speedTyper.props.children[2];
+    expect(wordsContainer.type.displayName).to.eql('Connect(Typing)');
   });
 });

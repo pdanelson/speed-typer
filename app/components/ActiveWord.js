@@ -1,15 +1,17 @@
 import React, { PropTypes } from 'react';
 import ActiveWordLetter from './ActiveWordLetter';
 
-export default function ActiveWord({ letters }) {
+export default function ActiveWord({ word, currentInput }) {
+  const letters = word.split('').map((lettr, idx) => ({
+    letter: lettr, correct: currentInput[idx] ? currentInput[idx] === lettr : null
+  }));
+
   return (
     <span>{letters.map((letter, i) => <ActiveWordLetter letter={letter} key={i} />)} </span>
   );
 }
 
 ActiveWord.propTypes = {
-  letters: PropTypes.arrayOf(PropTypes.shape({
-    letter: PropTypes.string.isRequired,
-    correct: PropTypes.bool
-  }).isRequired).isRequired
+  word: PropTypes.string.isRequired,
+  currentInput: PropTypes.string.isRequired
 };

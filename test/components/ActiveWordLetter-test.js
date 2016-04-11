@@ -12,7 +12,7 @@ describe('ActiveWordLetter', () => {
 
   context('with unvalidated letter', () => {
     it('should display letter without background color', () => {
-      const activeWordLetter = shallowRender({ letter: 'a' });
+      const activeWordLetter = shallowRender({ letter: 'a', correct: null });
       expect(activeWordLetter.props.children).to.eql('a');
       expect(activeWordLetter.props.style).to.have.property('fontWeight').which.eql('bold');
       expect(activeWordLetter.props.style).to.have.property('textDecoration').which.eql('underline');

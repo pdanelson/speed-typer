@@ -4,29 +4,49 @@ import TestUtils from 'react-addons-test-utils';
 import Words from '../../app/components/Words';
 
 describe('Words', () => {
-  const shallowRender = (activeWord, inactiveWords) => {
+  const shallowRender = (evaluatedWords, upcomingWords, currentInput) => {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<Words activeWord={activeWord} inactiveWords={inactiveWords} />);
+    renderer.render(
+      <Words evaluatedWords={evaluatedWords} upcomingWords={upcomingWords}
+        currentInput={currentInput}
+      />);
     return renderer.getRenderOutput();
   };
 
-  it('should render ActiveWord component and InactiveWord components2', () => {
+  it('should render PreviousWord component if previous word exists', () => {
     const words = shallowRender([
-      { letter: 'A', correct: true },
-      { letter: 'B', correct: false }
-    ], ['word1', 'word2']);
+      { word: 'prevWord1', correct: true },
+      { word: 'prevWord2', correct: false }
+    ], ['word1', 'word2', 'word3'], 'input');
+    const previousWord = words.props.children[0];
+    expect(previousWord.type.name).to.eql('PreviousWord');
+    expect(previousWord.props.word).to.eql({ word: 'prevWord2', correct: false });
+  });
 
-    const activeWord = words.props.children[0];
+  it('should not render PreviousWord component if previous word does not exist', () => {
+    const words = shallowRender([], ['word1', 'word2', 'word3'], 'input');
+    expect(words.props.children[0]).to.be.null;
+  });
+
+  it('should render ActiveWord component', () => {
+    const words = shallowRender([
+      { word: 'prevWord1', correct: true },
+      { word: 'prevWord2', correct: false }
+    ], ['word1', 'word2', 'word3'], 'input');
+    const activeWord = words.props.children[1];
     expect(activeWord.type.name).to.eql('ActiveWord');
-    expect(activeWord.props.letters).to.eql([
-      { letter: 'A', correct: true },
-      { letter: 'B', correct: false }
-    ]);
-    const inactiveWords = words.props.children[1];
+    expect(activeWord.props.word).to.eql('word1');
+    expect(activeWord.props.currentInput).to.eql('input');
+  });
+
+  it('should render two InactiveWord components', () => {
+    const words = shallowRender([
+      { word: 'prevWord1', correct: true },
+      { word: 'prevWord2', correct: false }
+    ], ['word1', 'word2', 'word3'], 'input');
+    const inactiveWords = words.props.children[2];
     expect(inactiveWords).to.have.length(2);
-    expect(inactiveWords[0].type.name).to.eql('InactiveWord');
-    expect(inactiveWords[0].props.word).to.eql('word1');
-    expect(inactiveWords[1].type.name).to.eql('InactiveWord');
-    expect(inactiveWords[1].props.word).to.eql('word2');
+    expect(inactiveWords[0].props.word).to.eql('word2');
+    expect(inactiveWords[1].props.word).to.eql('word3');
   });
 });
