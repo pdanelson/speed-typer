@@ -2,16 +2,16 @@
 import { changeInput, submitInput } from '../../app/actions/SpeedTyperActions';
 
 describe('SpeedTyperActions', () => {
-  it('changeInput should create CHANGE_INPUT action with payload', () => {
+  it('changeInput should create INPUT_CHANGED action with payload', () => {
     expect(changeInput('dist')).to.eql({
-      type: 'CHANGE_INPUT',
+      type: 'INPUT_CHANGED',
       payload: 'dist'
     });
   });
 
-  it('submitInput should create SUBMIT_INPUT action', () => {
+  it('submitInput should create INPUT_SUBMITTED action', () => {
     expect(submitInput()).to.eql({
-      type: 'SUBMIT_INPUT'
+      type: 'INPUT_SUBMITTED'
     });
   });
 });

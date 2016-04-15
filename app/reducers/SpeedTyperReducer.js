@@ -15,9 +15,9 @@ const initializeState = () => ({
 
 export default function SpeedTyperReducer(state = initializeState(), action) {
   switch (action.type) {
-    case 'CHANGE_INPUT':
+    case 'INPUT_CHANGED':
       return merge(state, { currentInput: action.payload });
-    case 'SUBMIT_INPUT': {
+    case 'INPUT_SUBMITTED': {
       const evaluatedWords = state.evaluatedWords.concat({
         word: first(state.upcomingWords),
         correct: first(state.upcomingWords) === state.currentInput
@@ -28,4 +28,18 @@ export default function SpeedTyperReducer(state = initializeState(), action) {
     default:
       return state;
   }
+}
+
+export function calcAccuracy(state) {
+  const correctWords = state.evaluatedWords.filter(word => word.correct);
+  return Math.round(correctWords.length / state.evaluatedWords.length * 10000) / 100 || 0;
+}
+
+export function calcWordsPerMinute(state) {
+  const elapsedMinutes = (Date.now() - state.startTime) / 1000 / 60;
+  return Math.round(state.evaluatedWords.length / elapsedMinutes * 100) / 100 || 0;
+}
+
+export function calcTypedCount(state) {
+  return state.evaluatedWords.length;
 }

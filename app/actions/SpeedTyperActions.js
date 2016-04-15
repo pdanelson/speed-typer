@@ -1,8 +1,8 @@
 export const changeInput = (input) => ({
-  type: 'CHANGE_INPUT',
+  type: 'INPUT_CHANGED',
   payload: input
 });
 
 export const submitInput = () => ({
-  type: 'SUBMIT_INPUT'
+  type: 'INPUT_SUBMITTED'
 });

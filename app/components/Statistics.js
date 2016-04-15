@@ -1,29 +1,17 @@
 import React, { PropTypes } from 'react';
 
-export default function Statistics({ evaluatedWords, startTime }) {
-  const calculateAccuracy = () => {
-    const correctWords = evaluatedWords.filter(word => word.correct);
-    return Math.round(correctWords.length / evaluatedWords.length * 10000) / 100 || 0;
-  };
-
-  const calculateWordsPerMinute = () => {
-    const elapsedMinutes = (Date.now() - startTime) / 1000 / 60;
-    return Math.round(evaluatedWords.length / elapsedMinutes * 100) / 100 || 0;
-  };
-
+export default function Statistics({ typedCount, wpm, accuracy }) {
   return (
     <div>
-      <div>{'Words typed: '.concat(evaluatedWords.length)}</div>
-      <div>{'Words per minute: '.concat(calculateWordsPerMinute())}</div>
-      <div>{'Accuracy: '.concat(calculateAccuracy()).concat('%')}</div>
+      <div>{'Words typed: '.concat(typedCount)}</div>
+      <div>{'Words per minute: '.concat(wpm)}</div>
+      <div>{'Accuracy: '.concat(accuracy).concat('%')}</div>
     </div>
   );
 }
 
 Statistics.propTypes = {
-  evaluatedWords: PropTypes.arrayOf(PropTypes.shape({
-    word: PropTypes.string.isRequired,
-    correct: PropTypes.bool.isRequired
-  }).isRequired).isRequired,
-  startTime: PropTypes.number.isRequired
+  typedCount: PropTypes.number.isRequired,
+  wpm: PropTypes.number.isRequired,
+  accuracy: PropTypes.number.isRequired
 };

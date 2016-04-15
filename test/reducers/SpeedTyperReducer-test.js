@@ -1,6 +1,6 @@
-/* global describe:false, context:false, it:false, before:false, after:false, expect:false, sinon:false */
+/* global describe:false, it:false expect:false, sinon:false */
 import Lodash from 'lodash';
-import reducer from '../../app/reducers/SpeedTyperReducer';
+import reducer, { calcAccuracy, calcTypedCount, calcWordsPerMinute } from '../../app/reducers/SpeedTyperReducer';
 
 describe('SpeedTyperReducer', () => {
   it('should return initial state', () => {
@@ -26,7 +26,7 @@ describe('SpeedTyperReducer', () => {
         upcomingWords: ['disturb', 'hexagon', 'development', 'inexplosive', 'fashionably'],
         currentInput: 'dis'
       }, {
-        type: 'CHANGE_INPUT',
+        type: 'INPUT_CHANGED',
         payload: 'dist'
       })
     ).to.eql({
@@ -46,16 +46,62 @@ describe('SpeedTyperReducer', () => {
         upcomingWords: ['disturb', 'hexagon', 'development', 'inexplosive', 'fashionably'],
         currentInput: 'disturb'
       }, {
-        type: 'SUBMIT_INPUT'
+        type: 'INPUT_SUBMITTED'
       })
     ).to.eql({
       startTime: 0,
-      evaluatedWords: [{
-        word: 'disturb',
-        correct: true }],
+      evaluatedWords: [
+        { word: 'disturb', correct: true }
+      ],
       upcomingWords: ['hexagon', 'development', 'inexplosive', 'fashionably', 'disturb'],
       currentInput: ''
     });
     Lodash.sample.restore();
+  });
+});
+
+describe('calcAccuracy', () => {
+  it('should calculate accuracy', () => {
+    expect(calcAccuracy({
+      startTime: 0,
+      evaluatedWords: [
+        { word: 'word1', correct: true },
+        { word: 'word2', correct: false }
+      ],
+      upcomingWords: ['hexagon', 'development', 'inexplosive', 'fashionably', 'disturb'],
+      currentInput: ''
+    })).to.eql(50);
+  });
+});
+
+describe('calcWordsPerMinute', () => {
+  it('should calculate words per minute', () => {
+    const now = Date.now();
+    const clock = sinon.useFakeTimers(now);
+    clock.tick(6000);
+    expect(calcWordsPerMinute({
+      startTime: now,
+      evaluatedWords: [
+        { word: 'word1', correct: true },
+        { word: 'word2', correct: false }
+      ],
+      upcomingWords: ['hexagon', 'development', 'inexplosive', 'fashionably', 'disturb'],
+      currentInput: ''
+    })).to.eql(20);
+    clock.reset();
+  });
+});
+
+describe('calcTypedCount', () => {
+  it('should calculate typed words count', () => {
+    expect(calcTypedCount({
+      startTime: 0,
+      evaluatedWords: [
+        { word: 'word1', correct: true },
+        { word: 'word2', correct: false }
+      ],
+      upcomingWords: ['hexagon', 'development', 'inexplosive', 'fashionably', 'disturb'],
+      currentInput: ''
+    })).to.eql(2);
   });
 });
