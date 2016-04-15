@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import SpeedTyperReducer from './reducers/SpeedTyperReducer';
+import SpeedTyperReducer from './reducers/index';
 import SpeedTyper from './components/SpeedTyper';
 
 render(

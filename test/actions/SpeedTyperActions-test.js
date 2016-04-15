@@ -1,17 +1,18 @@
 /* global describe:false, context:false, it:false, before:false, after:false, expect:false, sinon:false */
-import { changeInput, submitInput } from '../../app/actions/SpeedTyperActions';
+import { changeInput, submitInput } from '../../app/actions/TypingActions';
+import { CHANGE_INPUT, SUBMIT_INPUT } from '../../app/constants/TypingActionType';
 
 describe('SpeedTyperActions', () => {
-  it('changeInput should create INPUT_CHANGED action with payload', () => {
+  it('changeInput should create CHANGE_INPUT action with payload', () => {
     expect(changeInput('dist')).to.eql({
-      type: 'INPUT_CHANGED',
+      type: CHANGE_INPUT,
       payload: 'dist'
     });
   });
 
-  it('submitInput should create INPUT_SUBMITTED action', () => {
+  it('submitInput should create SUBMIT_INPUT action', () => {
     expect(submitInput()).to.eql({
-      type: 'INPUT_SUBMITTED'
+      type: SUBMIT_INPUT
     });
   });
 });

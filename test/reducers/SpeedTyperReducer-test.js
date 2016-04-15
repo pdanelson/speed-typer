@@ -1,6 +1,7 @@
 /* global describe:false, it:false expect:false, sinon:false */
 import Lodash from 'lodash';
-import reducer, { calcAccuracy, calcTypedCount, calcWordsPerMinute } from '../../app/reducers/SpeedTyperReducer';
+import reducer, { calcAccuracy, calcTypedCount, calcWordsPerMinute } from '../../app/reducers/index';
+import { CHANGE_INPUT, SUBMIT_INPUT } from '../../app/constants/TypingActionType';
 
 describe('SpeedTyperReducer', () => {
   it('should return initial state', () => {
@@ -26,7 +27,7 @@ describe('SpeedTyperReducer', () => {
         upcomingWords: ['disturb', 'hexagon', 'development', 'inexplosive', 'fashionably'],
         currentInput: 'dis'
       }, {
-        type: 'INPUT_CHANGED',
+        type: CHANGE_INPUT,
         payload: 'dist'
       })
     ).to.eql({
@@ -46,7 +47,7 @@ describe('SpeedTyperReducer', () => {
         upcomingWords: ['disturb', 'hexagon', 'development', 'inexplosive', 'fashionably'],
         currentInput: 'disturb'
       }, {
-        type: 'INPUT_SUBMITTED'
+        type: SUBMIT_INPUT
       })
     ).to.eql({
       startTime: 0,

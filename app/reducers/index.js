@@ -1,5 +1,5 @@
 import { sample, sampleSize, first, tail } from 'lodash';
-
+import { CHANGE_INPUT, SUBMIT_INPUT } from '../constants/TypingActionType';
 const merge = (obj1, obj2) => Object.assign({}, obj1, obj2);
 
 const words = ['disturb', 'hexagon', 'development', 'inexplosive', 'fashionably', 'laniferous',
@@ -15,9 +15,9 @@ const initializeState = () => ({
 
 export default function SpeedTyperReducer(state = initializeState(), action) {
   switch (action.type) {
-    case 'INPUT_CHANGED':
+    case CHANGE_INPUT:
       return merge(state, { currentInput: action.payload });
-    case 'INPUT_SUBMITTED': {
+    case SUBMIT_INPUT: {
       const evaluatedWords = state.evaluatedWords.concat({
         word: first(state.upcomingWords),
         correct: first(state.upcomingWords) === state.currentInput

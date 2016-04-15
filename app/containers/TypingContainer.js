@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeInput, submitInput } from '../actions/SpeedTyperActions';
+import { changeInput, submitInput } from '../actions/TypingActions';
 import Typing from '../components/Typing';
 
 const mapStateToProps = (state) => ({
