@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import { FETCH_WORDS_REQUEST, FETCH_WORDS_SUCCESS } from '../constants/WordsActionType';
 import { FETCH_WORDS_FAILURE } from '../constants/WordsActionType';
 
