@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import ActiveWordLetter from './ActiveWordLetter';
 
-export default function ActiveWord({ word, currentInput }) {
+export default function ActiveWord({ word, input }) {
   const letters = word.split('').map((lettr, idx) => ({
-    letter: lettr, correct: currentInput[idx] ? currentInput[idx] === lettr : null
+    letter: lettr, correct: input[idx] ? input[idx] === lettr : null
   }));
 
   return (
@@ -13,5 +13,5 @@ export default function ActiveWord({ word, currentInput }) {
 
 ActiveWord.propTypes = {
   word: PropTypes.string.isRequired,
-  currentInput: PropTypes.string.isRequired
+  input: PropTypes.string.isRequired
 };

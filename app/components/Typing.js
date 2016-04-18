@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-export default function Typing({ onChange, onSubmit, currentInput }) {
+export default function Typing({ onChange, onSubmit, input, gameStarted }) {
   const handleInput = (event) => {
     onChange(event.target.value);
   };
@@ -8,13 +8,13 @@ export default function Typing({ onChange, onSubmit, currentInput }) {
   const handleKeyDown = (event) => {
     if (event.key === ' ') {
       event.preventDefault();
-      onSubmit();
+      onSubmit(input);
     }
   };
 
   return (
     <form>
-      <input type="text" placeholder="Type here" value={currentInput}
+      <input type="text" placeholder="Type here" value={input} disabled={!gameStarted}
         onChange={handleInput} onKeyDown={handleKeyDown}
       />
     </form>
@@ -24,5 +24,6 @@ export default function Typing({ onChange, onSubmit, currentInput }) {
 Typing.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  currentInput: PropTypes.string.isRequired
+  input: PropTypes.string.isRequired,
+  gameStarted: PropTypes.bool.isRequired
 };

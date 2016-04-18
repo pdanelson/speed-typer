@@ -4,9 +4,9 @@ import TestUtils from 'react-addons-test-utils';
 import ActiveWord from '../../app/components/ActiveWord';
 
 describe('ActiveWord', () => {
-  const shallowRender = (word, currentInput) => {
+  const shallowRender = (word, input) => {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<ActiveWord word={word} currentInput={currentInput} />);
+    renderer.render(<ActiveWord word={word} input={input} />);
     return renderer.getRenderOutput();
   };
 

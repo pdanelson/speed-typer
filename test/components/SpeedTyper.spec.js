@@ -10,23 +10,33 @@ describe('SpeedTyper', () => {
     return renderer.getRenderOutput();
   };
 
-  const deepRender = () => TestUtils.renderIntoDocument(<SpeedTyper />);
+  it('should render HighscoresContainer', () => {
+    const speedTyper = shallowRender();
+    const highscoresContainer = speedTyper.props.children[0];
+    expect(highscoresContainer.type.displayName).to.eql('Connect(Highscores)');
+  });
 
   it('should render StatisticsContainer', () => {
     const speedTyper = shallowRender();
-    const statsContainer = speedTyper.props.children[0];
+    const statsContainer = speedTyper.props.children[1];
     expect(statsContainer.type.displayName).to.eql('Connect(Statistics)');
   });
 
   it('should render WordsContainer', () => {
     const speedTyper = shallowRender();
-    const wordsContainer = speedTyper.props.children[1];
+    const wordsContainer = speedTyper.props.children[2];
     expect(wordsContainer.type.displayName).to.eql('Connect(Words)');
   });
 
   it('should render TypingContainer', () => {
     const speedTyper = shallowRender();
-    const wordsContainer = speedTyper.props.children[2];
+    const wordsContainer = speedTyper.props.children[3];
     expect(wordsContainer.type.displayName).to.eql('Connect(Typing)');
+  });
+
+  it('should render ButtonsContainer', () => {
+    const speedTyper = shallowRender();
+    const buttonsContainer = speedTyper.props.children[4];
+    expect(buttonsContainer.type.displayName).to.eql('Connect(Buttons)');
   });
 });

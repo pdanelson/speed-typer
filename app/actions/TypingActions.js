@@ -5,6 +5,7 @@ export const changeInput = (input) => ({
   payload: input
 });
 
-export const submitInput = () => ({
-  type: SUBMIT_INPUT
+export const submitInput = (input) => ({
+  type: SUBMIT_INPUT,
+  payload: input
 });

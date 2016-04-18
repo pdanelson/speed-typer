@@ -4,11 +4,11 @@ import TestUtils from 'react-addons-test-utils';
 import Words from '../../app/components/Words';
 
 describe('Words', () => {
-  const shallowRender = (previousWord, activeWord, inactiveWords, currentInput) => {
+  const shallowRender = (previousWord, activeWord, inactiveWords, input) => {
     const renderer = TestUtils.createRenderer();
     renderer.render(
       <Words previousWord={previousWord} activeWord={activeWord} inactiveWords={inactiveWords}
-        currentInput={currentInput}
+        input={input}
       />);
     return renderer.getRenderOutput();
   };
@@ -32,7 +32,7 @@ describe('Words', () => {
     const activeWord = words.props.children[1];
     expect(activeWord.type.name).to.eql('ActiveWord');
     expect(activeWord.props.word).to.eql('word1');
-    expect(activeWord.props.currentInput).to.eql('input');
+    expect(activeWord.props.input).to.eql('input');
   });
 
   it('should render two InactiveWord components', () => {

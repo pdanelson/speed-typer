@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { first, tail, last } from 'lodash';
+import { selectPrevious, selectActive, selectInactive } from '../selectors/WordsSelectors';
 import Words from '../components/Words';
 
 const mapStateToProps = (state) => ({
-  previousWord: last(state.evaluatedWords),
-  activeWord: first(state.upcomingWords),
-  inactiveWords: tail(state.upcomingWords),
-  currentInput: state.currentInput
+  previousWord: selectPrevious(state),
+  activeWord: selectActive(state),
+  inactiveWords: selectInactive(state),
+  input: state.input
 });
 
 export default connect(mapStateToProps)(Words);

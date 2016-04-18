@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import Statistics from '../components/Statistics';
-import { calcAccuracy, calcTypedCount, calcWordsPerMinute } from '../reducers/index';
+import { selectAccuracy, selectTypedCount, selectWpm } from '../selectors/StatisticsSelectors';
 
 const mapStateToProps = (state) => ({
-  typedCount: calcTypedCount(state),
-  wpm: calcWordsPerMinute(state),
-  accuracy: calcAccuracy(state)
+  secondsElapsed: state.timer.seconds,
+  typedCount: selectTypedCount(state),
+  wpm: selectWpm(state),
+  accuracy: selectAccuracy(state)
 });
 
 export default connect(mapStateToProps)(Statistics);
