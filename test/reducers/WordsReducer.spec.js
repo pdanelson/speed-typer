@@ -70,7 +70,7 @@ describe('WordsReducer', () => {
     });
   });
 
-  it('should handle SUBMIT_INPUT if there are upcoming words', () => {
+  it('should handle SUBMIT_INPUT if there are upcoming words and input is correct', () => {
     expect(wordsReducer({
       upcoming: ['word2', 'word3'],
       evaluated: [
@@ -84,6 +84,25 @@ describe('WordsReducer', () => {
       upcoming: ['word3'],
       evaluated: [
         { word: 'word1', correct: true }, { word: 'word2', correct: true }
+      ],
+      fetching: false
+    });
+  });
+
+  it('should handle SUBMIT_INPUT if there are upcoming words and input is incorrect', () => {
+    expect(wordsReducer({
+      upcoming: ['word2', 'word3'],
+      evaluated: [
+        { word: 'word1', correct: true }
+      ],
+      fetching: false
+    }, {
+      type: SUBMIT_INPUT,
+      payload: 'word1'
+    })).to.eql({
+      upcoming: ['word3'],
+      evaluated: [
+        { word: 'word1', correct: true }, { word: 'word2', correct: false }
       ],
       fetching: false
     });
