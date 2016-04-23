@@ -4,15 +4,19 @@ import StatisticsContainer from '../containers/StatisticsContainer';
 import WordsContainer from '../containers/WordsContainer';
 import TypingContainer from '../containers/TypingContainer';
 import ButtonsContainer from '../containers/ButtonsContainer';
+import OpponentContainer from '../containers/OpponentContainer';
 
 export default function SpeedTyper() {
   return (
     <div>
+      <h2>You</h2>
       <HighscoresContainer />
       <StatisticsContainer />
       <WordsContainer />
       <TypingContainer />
       <ButtonsContainer />
+      <h2>Opponent</h2>
+      <OpponentContainer />
     </div>
   );
 }

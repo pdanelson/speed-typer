@@ -1,5 +1,5 @@
 /* global describe:false, it:false expect:false */
-import { selectAccuracy, selectWpm, selectTypedCount } from '../../app/selectors/StatisticsSelectors';
+import { selectAccuracy, selectWpm } from '../../app/selectors/StatisticsSelectors';
 
 describe('StatisticsSelectors', () => {
   describe('selectAccuracy', () => {
@@ -36,27 +36,7 @@ describe('StatisticsSelectors', () => {
           upcoming: ['hexagon', 'development', 'inexplosive', 'fashionably', 'disturb']
         },
         input: ''
-      })).to.eql(20);
-    });
-  });
-
-
-  describe('calcTypedCount', () => {
-    it('should calculate typed words count', () => {
-      expect(selectTypedCount({
-        timer: {
-          seconds: 6,
-          started: true
-        },
-        words: {
-          evaluated: [
-            { word: 'word1', correct: true },
-            { word: 'word2', correct: false }
-          ],
-          upcoming: ['hexagon', 'development', 'inexplosive', 'fashionably', 'disturb']
-        },
-        input: ''
-      })).to.eql(2);
+      })).to.eql(10);
     });
   });
 });

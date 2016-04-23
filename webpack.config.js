@@ -35,9 +35,5 @@ module.exports = {
       filename: 'index.html'
     })
   ],
-  devServer: {
-    devtool: 'eval-source-map',
-    contentBase: PATHS.dist,
-    port: 3000
-  }
+  devtool: 'eval-source-map'
 };
