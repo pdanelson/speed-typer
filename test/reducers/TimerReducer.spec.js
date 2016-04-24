@@ -1,4 +1,4 @@
-/* global describe:false, it:false expect:false */
+/* global describe:false, it:false, expect:false */
 import timerReducer from '../../app/reducers/TimerReducer';
 import { INCREMENT_TIMER } from '../../app/constants/TimerActionType';
 import { START_GAME, STOP_GAME } from '../../app/constants/ButtonsActionType';

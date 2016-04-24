@@ -1,4 +1,4 @@
-/* global describe:false, it:false expect:false */
+/* global describe:false, it:false, expect:false */
 import { selectPrevious, selectActive, selectInactive } from '../../app/selectors/WordsSelectors';
 
 describe('WordsSelectors', () => {

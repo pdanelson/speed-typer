@@ -1,4 +1,4 @@
-/* global describe:false, it:false expect:false */
+/* global describe:false, it:false, expect:false */
 import highscoresReducer from '../../app/reducers/HighscoresReducer';
 import { STOP_GAME } from '../../app/constants/ButtonsActionType';
 

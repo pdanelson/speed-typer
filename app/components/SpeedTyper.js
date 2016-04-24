@@ -15,7 +15,6 @@ export default function SpeedTyper() {
       <WordsContainer />
       <TypingContainer />
       <ButtonsContainer />
-      <h2>Opponent</h2>
       <OpponentContainer />
     </div>
   );

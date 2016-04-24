@@ -1,12 +1,9 @@
 /* global describe:false, it:false, expect:false, sinon:false */
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import nock from 'nock';
 import { startGame, stopGame } from '../../app/actions/ButtonsActions';
-import WordsActions from '../../app/actions/WordsActions';
+import { FETCH_WORDS_REQUEST } from '../../app/constants/WordsActionType';
 import { START_GAME, STOP_GAME } from '../../app/constants/ButtonsActionType';
-import { FETCH_WORDS_SUCCESS, FETCH_WORDS_REQUEST } from '../../app/constants/WordsActionType';
-import { INCREMENT_TIMER } from '../../app/constants/TimerActionType';
 
 describe('ButtonsActions', () => {
   it('stopGame should create STOP_GAME action', () => {

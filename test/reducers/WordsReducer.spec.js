@@ -1,4 +1,4 @@
-/* global describe:false, it:false expect:false */
+/* global describe:false, it:false, expect:false */
 import wordsReducer from '../../app/reducers/WordsReducer';
 import { SUBMIT_INPUT } from '../../app/constants/TypingActionType';
 import { FETCH_WORDS_REQUEST, FETCH_WORDS_SUCCESS } from '../../app/constants/WordsActionType';

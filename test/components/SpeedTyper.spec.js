@@ -47,16 +47,9 @@ describe('SpeedTyper', () => {
     expect(buttonsContainer.type.displayName).to.eql('Connect(Buttons)');
   });
 
-  it('should render Header with "Opponent"', () => {
-    const speedTyper = shallowRender();
-    const header = speedTyper.props.children[6];
-    expect(header.type).to.eql('h2');
-    expect(header.props.children).to.eql('Opponent');
-  });
-
   it('should render OpponentContainer', () => {
     const speedTyper = shallowRender();
-    const opponentContainer = speedTyper.props.children[7];
+    const opponentContainer = speedTyper.props.children[6];
     expect(opponentContainer.type.displayName).to.eql('Connect(Opponent)');
   });
 });

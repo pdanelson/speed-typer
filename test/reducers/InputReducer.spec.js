@@ -1,4 +1,4 @@
-/* global describe:false, it:false expect:false */
+/* global describe:false, it:false, expect:false */
 import inputReducer from '../../app/reducers/InputReducer';
 import { CHANGE_INPUT, SUBMIT_INPUT } from '../../app/constants/TypingActionType';
 import { START_GAME } from '../../app/constants/ButtonsActionType';

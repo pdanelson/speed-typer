@@ -1,4 +1,4 @@
-/* global describe:false, it:false expect:false */
+/* global describe:false, it:false, expect:false */
 import { selectAccuracy, selectWpm } from '../../app/selectors/StatisticsSelectors';
 
 describe('StatisticsSelectors', () => {

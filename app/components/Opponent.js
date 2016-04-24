@@ -3,30 +3,32 @@ import Highscores from './Highscores';
 import Statistics from './Statistics';
 import Words from './Words';
 
-export default function Opponent({ bestWpm, bestAccuracy, wpm, accuracy,
+export default function Opponent({ display, bestWpm, bestAccuracy, wpm, accuracy,
   secondsElapsed, previousWord, activeWord, inactiveWords, input }) {
-  return (
+  return display ? (
     <div>
+      <h2>Opponent</h2>
       <Highscores wpm={bestWpm} accuracy={bestAccuracy} />
       <Statistics wpm={wpm} accuracy={accuracy} secondsElapsed={secondsElapsed} />
       <Words previousWord={previousWord} activeWord={activeWord}
         inactiveWords={inactiveWords} input={input}
       />
     </div>
-  );
+  ) : (<div></div>);
 }
 
 Opponent.propTypes = {
-  bestWpm: PropTypes.number.isRequired,
-  bestAccuracy: PropTypes.number.isRequired,
-  secondsElapsed: PropTypes.number.isRequired,
-  wpm: PropTypes.number.isRequired,
-  accuracy: PropTypes.number.isRequired,
+  display: PropTypes.bool.isRequired,
+  bestWpm: PropTypes.number,
+  bestAccuracy: PropTypes.number,
+  secondsElapsed: PropTypes.number,
+  wpm: PropTypes.number,
+  accuracy: PropTypes.number,
   previousWord: PropTypes.shape({
     word: PropTypes.string.isRequired,
     correct: PropTypes.bool.isRequired
   }),
   activeWord: PropTypes.string,
-  inactiveWords: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  input: PropTypes.string.isRequired
+  inactiveWords: PropTypes.arrayOf(PropTypes.string.isRequired),
+  input: PropTypes.string
 };
