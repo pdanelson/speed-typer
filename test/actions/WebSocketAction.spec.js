@@ -5,12 +5,11 @@ import { webSocketConnectionRequested, sendWebSocketMessage } from '../../app/ac
 import { WEBSOCKET_CONNECTION_DROPPED, WEBSOCKET_CONNECTION_ESTABLISHED } from '../../app/constants/WebSocketActionType';
 import { UPDATE_OPPONENT } from '../../app/constants/OpponentActionType';
 
-const actualWebSocket = window.WebSocket;
-let clock;
-let dispatch;
-let getState;
-
 describe('Websocket actions', () => {
+  const actualWebSocket = window.WebSocket;
+  let clock;
+  let dispatch;
+  let getState;
   let mockServer;
 
   before(() => {

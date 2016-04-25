@@ -10,7 +10,7 @@ const server = new WebpackDevServer(webpack(config), {
   historyApiFallback: true
 });
 
-module.exports.start = () => {
+const start = () => {
   server.listen(port, host, (err) => {
     if (err) {
       console.log(err);
@@ -19,3 +19,5 @@ module.exports.start = () => {
     }
   });
 };
+
+module.exports = { port, host, start };

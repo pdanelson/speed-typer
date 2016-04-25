@@ -7,19 +7,13 @@ const webSocketConf = {
   host: 'localhost'
 };
 
-const webSocketConnectionEstablished = () => {
-  console.log('connected to websocket');
-  return {
-    type: WEBSOCKET_CONNECTION_ESTABLISHED
-  };
-};
+const webSocketConnectionEstablished = () => ({
+  type: WEBSOCKET_CONNECTION_ESTABLISHED
+});
 
-const webSocketConnectionDropped = () => {
-  console.log('disconnected from websocket');
-  return {
-    type: WEBSOCKET_CONNECTION_DROPPED
-  };
-};
+const webSocketConnectionDropped = () => ({
+  type: WEBSOCKET_CONNECTION_DROPPED
+});
 
 let webSocketConnection;
 export const webSocketConnectionRequested = () =>
@@ -49,7 +43,6 @@ export const webSocketConnectionRequested = () =>
 
 export const sendWebSocketMessage = (message) => {
   try {
-    console.log('Sending message to websocket', message);
     webSocketConnection.send(JSON.stringify(message));
   } catch (error) {
     console.error('Cannot stringify websocket message', error, message);

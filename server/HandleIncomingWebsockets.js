@@ -1,6 +1,7 @@
+const DevServer = require('./WebpackDevServer');
+
 function originIsAllowed(origin) {
-  console.log(`origin ${origin}`);
-  return true; // Replace in a non-dev environment
+  return origin === `http://${DevServer.host}:${DevServer.port}`;
 }
 
 const liveConnections = [];

@@ -4,11 +4,14 @@ import { WebSocket, Server } from 'mock-socket';
 import { webSocketConnectionRequested } from '../../app/actions/WebSocketActions';
 import gameStatePublisher from '../../app/middlewares/GameStatePublisher';
 
-const actualWebSocket = window.WebSocket;
-let clock;
-let mockServer;
-
 describe('GameStatePubliser', () => {
+  const actualWebSocket = window.WebSocket;
+  const action = { type: 'irrelevant' };
+  let clock;
+  let mockServer;
+  let onMessage;
+  let next;
+
   before(() => {
     global.WebSocket = WebSocket;
     clock = sinon.useFakeTimers();
@@ -22,6 +25,9 @@ describe('GameStatePubliser', () => {
   beforeEach(() => {
     mockServer = new Server('ws://localhost:8081');
     webSocketConnectionRequested(sinon.stub(), sinon.stub());
+    onMessage = sinon.stub();
+    mockServer.on('message', onMessage);
+    next = sinon.stub().withArgs(action).returns(action);
   });
 
   afterEach(() => {
@@ -46,13 +52,9 @@ describe('GameStatePubliser', () => {
       input: 'changed'
     };
     it('should call next and send websocket message', () => {
-      const onMessage = sinon.stub();
-      mockServer.on('message', onMessage);
       const getState = sinon.stub();
       getState.onCall(0).returns(initial).onCall(1).returns(final).onCall(2).returns(final);
       const store = { getState };
-      const action = { type: 'irrelevant' };
-      const next = sinon.stub().withArgs(action).returns({});
 
       gameStatePublisher(store)(next)(action);
       expect(next).to.have.been.calledOnce;
@@ -79,13 +81,9 @@ describe('GameStatePubliser', () => {
       input: 'changed'
     };
     it('should call next and not send websocket message', () => {
-      const onMessage = sinon.stub();
-      mockServer.on('message', onMessage);
       const getState = sinon.stub();
       getState.onCall(0).returns(initial).onCall(1).returns(final).onCall(2).returns(final);
       const store = { getState };
-      const action = { type: 'irrelevant' };
-      const next = sinon.stub().withArgs(action).returns({});
 
       gameStatePublisher(store)(next)(action);
       expect(next).to.have.been.calledOnce;
@@ -111,12 +109,9 @@ describe('GameStatePubliser', () => {
       input: ''
     };
     it('should call next and not send websocket message', () => {
-      const onMessage = sinon.stub();
-      mockServer.on('message', onMessage);
       const getState = sinon.stub();
       getState.onCall(0).returns(initial).onCall(1).returns(final).onCall(2).returns(final);
-      const store = { getState };      const action = { type: 'irrelevant' };
-      const next = sinon.stub().withArgs(action).returns({});
+      const store = { getState };
 
       gameStatePublisher(store)(next)(action);
       expect(next).to.have.been.calledOnce;
