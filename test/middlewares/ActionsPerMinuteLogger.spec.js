@@ -1,17 +1,24 @@
-/* global describe:false, it:false, expect:false, sinon:false, beforeEach:false, afterEach:false */
+/* global describe:false, it:false, expect:false, sinon:false, beforeEach:false, afterEach:false,
+ * before:false, after:false */
 import configureMockStore from 'redux-mock-store';
 import actionsPerMinuteLogger from '../../app/middlewares/ActionsPerMinuteLogger';
 
 describe('ActionsPerMinuteLogger', () => {
   let clock;
 
-  beforeEach(() => {
+  before(() => {
     clock = sinon.useFakeTimers();
+  });
+
+  after(() => {
+    clock.restore();
+  });
+
+  beforeEach(() => {
     sinon.spy(console, 'log');
   });
 
   afterEach(() => {
-    clock.restore();
     console.log.restore();
   });
 
