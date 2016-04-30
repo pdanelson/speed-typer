@@ -4,19 +4,13 @@ import { STOP_GAME } from '../../app/constants/ButtonsActionType';
 
 describe('HighscoresReducer', () => {
   it('should initialize state', () => {
-    expect(highscoresReducer(undefined, {})).to.eql({ wpm: 0, accuracy: 0 });
+    expect(highscoresReducer(undefined, {})).to.eql([]);
   });
 
   it('should handle STOP_GAME', () => {
-    expect(highscoresReducer({
-      wpm: 20,
-      accuracy: 50
-    }, {
+    expect(highscoresReducer([], {
       type: STOP_GAME,
-      payload: {
-        wpm: 18,
-        accuracy: 75
-      }
-    })).to.eql({ wpm: 20, accuracy: 75 });
+      payload: { wpm: 20, accuracy: 50, duration: 6 }
+    })).to.eql([{ wpm: 20, accuracy: 50, duration: 6 }]);
   });
 });

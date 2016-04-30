@@ -7,13 +7,17 @@ import { START_GAME, STOP_GAME } from '../../app/constants/ButtonsActionType';
 
 describe('ButtonsActions', () => {
   it('stopGame should create STOP_GAME action', () => {
-    expect(stopGame(20, 50)).to.eql({
+    const mockState = {
+      words: { evaluated: [{ word: 'word1', correct: true }, { word: 'word2', correct: false }] },
+      timer: { seconds: 6 }
+    };
+    const mockStore = configureMockStore([thunk])(mockState);
+    mockStore.dispatch(stopGame());
+    const expectedActions = [{
       type: STOP_GAME,
-      payload: {
-        wpm: 20,
-        accuracy: 50
-      }
-    });
+      payload: { wpm: 10, accuracy: 50, duration: 6 }
+    }];
+    expect(mockStore.getActions()).to.eql(expectedActions);
   });
 
   it('startGame should do nothing if fetching words already in progress', () => {

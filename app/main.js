@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import gameStatePublisher from './middlewares/GameStatePublisher';
 import actionsPerMinuteLogger from './middlewares/ActionsPerMinuteLogger';
@@ -11,10 +11,9 @@ import SpeedTyper from './components/SpeedTyper';
 
 const store = createStore(
   reducer,
-  applyMiddleware(
-    thunk,
-    gameStatePublisher,
-    actionsPerMinuteLogger
+  compose(
+    applyMiddleware(thunk, gameStatePublisher, actionsPerMinuteLogger),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );
 store.dispatch(webSocketConnectionRequested());

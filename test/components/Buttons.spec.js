@@ -10,15 +10,15 @@ describe('Buttons', () => {
     }
   });
 
-  const deepRender = (gameStarted, wpm, accuracy, onStart, onStop) => TestUtils.renderIntoDocument(
+  const deepRender = (gameStarted, onStart, onStop) => TestUtils.renderIntoDocument(
     <Wrapper>
-      <Buttons gameStarted={gameStarted} wpm={wpm} accuracy={accuracy} onStart={onStart} onStop={onStop} />
+      <Buttons gameStarted={gameStarted} onStart={onStart} onStop={onStop} />
     </Wrapper>);
 
   it('should display only start button if game is stopped', () => {
     const onStart = sinon.stub();
     const onStop = sinon.stub();
-    const buttons = deepRender(false, 20, 50, onStart, onStop);
+    const buttons = deepRender(false, onStart, onStop);
     const startButton = TestUtils.findRenderedDOMComponentWithTag(buttons, 'button');
     expect(startButton.props.children).to.eql('Start game');
   });
@@ -26,7 +26,7 @@ describe('Buttons', () => {
   it('should display only stop button if game is started', () => {
     const onStart = sinon.stub();
     const onStop = sinon.stub();
-    const buttons = deepRender(true, 20, 50, onStart, onStop);
+    const buttons = deepRender(true, onStart, onStop);
     const stopButton = TestUtils.findRenderedDOMComponentWithTag(buttons, 'button');
     expect(stopButton.props.children).to.eql('Stop game');
   });
@@ -34,7 +34,7 @@ describe('Buttons', () => {
   it('should call onStart when pressing start button', () => {
     const onStart = sinon.stub();
     const onStop = sinon.stub();
-    const buttons = deepRender(false, 20, 50, onStart, onStop);
+    const buttons = deepRender(false, onStart, onStop);
     const startButton = TestUtils.findRenderedDOMComponentWithTag(buttons, 'button');
     TestUtils.Simulate.click(startButton);
     expect(onStart).to.have.been.calledOnce;
@@ -43,10 +43,9 @@ describe('Buttons', () => {
   it('should call onStop when pressing stop button', () => {
     const onStart = sinon.stub();
     const onStop = sinon.stub();
-    const buttons = deepRender(true, 20, 50, onStart, onStop);
+    const buttons = deepRender(true, onStart, onStop);
     const stopButton = TestUtils.findRenderedDOMComponentWithTag(buttons, 'button');
     TestUtils.Simulate.click(stopButton);
     expect(onStop).to.have.been.calledOnce;
   });
-
 });

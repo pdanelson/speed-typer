@@ -1,29 +1,19 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
-export default function Typing({ onChange, onSubmit, input, gameStarted }) {
-  const handleInput = (event) => {
-    onChange(event.target.value);
+export default class Typing extends Component {
+  static propTypes = {
+    onInput: PropTypes.func.isRequired
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === ' ') {
-      event.preventDefault();
-      onSubmit(input);
-    }
-  };
+  componentDidMount() {
+    window.addEventListener('keypress', this.props.onInput);
+  }
 
-  return (
-    <form>
-      <input type="text" placeholder="Type here" value={input} disabled={!gameStarted}
-        onChange={handleInput} onKeyDown={handleKeyDown}
-      />
-    </form>
-  );
+  componentWillUnmount() {
+    window.removeEventListener('keypress', this.props.onInput);
+  }
+
+  render() {
+    return <span />;
+  }
 }
-
-Typing.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  input: PropTypes.string.isRequired,
-  gameStarted: PropTypes.bool.isRequired
-};

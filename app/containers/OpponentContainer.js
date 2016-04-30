@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import Opponent from '../components/Opponent';
+import { selectBestAccuracy, selectBestWpm } from '../selectors/HighscoresSelectors';
 import { selectWpm, selectAccuracy } from '../selectors/StatisticsSelectors';
 import { selectPrevious, selectActive, selectInactive } from '../selectors/WordsSelectors';
 
 const mapStateToProps = (state) => ({
   display: state.opponent.active,
-  bestWpm: state.opponent.highscores.wpm,
-  bestAccuracy: state.opponent.highscores.accuracy,
+  bestWpm: selectBestWpm(state.opponent),
+  bestAccuracy: selectBestAccuracy(state.opponent),
   wpm: selectWpm(state.opponent),
   accuracy: selectAccuracy(state.opponent),
   secondsElapsed: state.opponent.timer.seconds,

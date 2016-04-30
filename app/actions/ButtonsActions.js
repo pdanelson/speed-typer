@@ -1,5 +1,6 @@
 import { fetchWords, fetchWordsSuccess, fetchWordsFailure } from './WordsActions';
 import { startTimer } from './TimerActions';
+import { selectAccuracy, selectWpm } from '../selectors/StatisticsSelectors';
 import { START_GAME, STOP_GAME } from '../constants/ButtonsActionType';
 
 export const startGame = () =>
@@ -16,7 +17,15 @@ export const startGame = () =>
     );
   };
 
-export const stopGame = (wpm, accuracy) => ({
-  type: STOP_GAME,
-  payload: { wpm, accuracy }
-});
+export const stopGame = () =>
+  (dispatch, getState) => {
+    const state = getState();
+    dispatch({
+      type: STOP_GAME,
+      payload: {
+        wpm: selectWpm(state),
+        accuracy: selectAccuracy(state),
+        duration: state.timer.seconds
+      }
+    });
+  };
