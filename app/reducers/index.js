@@ -5,6 +5,7 @@ import input from './InputReducer';
 import words from './WordsReducer';
 import opponent from './OpponentReducer';
 import webSocket from './WebSocketReducer';
+import { routerReducer as routing } from 'react-router-redux';
 
 export default combineReducers({
   highscores,
@@ -12,5 +13,6 @@ export default combineReducers({
   input,
   words,
   opponent,
-  webSocket
+  webSocket,
+  routing
 });

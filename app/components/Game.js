@@ -6,7 +6,7 @@ import TypingContainer from '../containers/TypingContainer';
 import ButtonsContainer from '../containers/ButtonsContainer';
 import OpponentContainer from '../containers/OpponentContainer';
 
-export default function SpeedTyper() {
+export default function Game() {
   return (
     <div>
       <h2>You</h2>

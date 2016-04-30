@@ -1,3 +1,4 @@
+import { push } from 'react-router-redux';
 import { fetchWords, fetchWordsSuccess, fetchWordsFailure } from './WordsActions';
 import { startTimer } from './TimerActions';
 import { selectAccuracy, selectWpm } from '../selectors/StatisticsSelectors';
@@ -28,4 +29,5 @@ export const stopGame = () =>
         duration: state.timer.seconds
       }
     });
+    dispatch(push('/pastGames'));
   };

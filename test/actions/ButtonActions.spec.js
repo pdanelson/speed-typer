@@ -13,10 +13,10 @@ describe('ButtonsActions', () => {
     };
     const mockStore = configureMockStore([thunk])(mockState);
     mockStore.dispatch(stopGame());
-    const expectedActions = [{
-      type: STOP_GAME,
-      payload: { wpm: 10, accuracy: 50, duration: 6 }
-    }];
+    const expectedActions = [
+      { type: STOP_GAME, payload: { wpm: 10, accuracy: 50, duration: 6 } },
+      { type: '@@router/CALL_HISTORY_METHOD', payload: { args: ['/pastGames'], method: 'push' } }
+    ];
     expect(mockStore.getActions()).to.eql(expectedActions);
   });
 
